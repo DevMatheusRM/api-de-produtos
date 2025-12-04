@@ -4,6 +4,7 @@ import io.github.cursodsousa.produtosapi.Repository.ProdutoRepository;
 import io.github.cursodsousa.produtosapi.model.Produto;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -42,5 +43,10 @@ public class ProdutoController {
                           @RequestBody Produto produto){
         produto.setId(id);
         produtoRepository.save(produto);
+    }
+
+    @GetMapping
+    public List<Produto> buscar(@RequestParam("nome") String nome){
+        return produtoRepository.findByNome(nome);
     }
 }
